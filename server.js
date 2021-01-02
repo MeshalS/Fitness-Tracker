@@ -6,14 +6,15 @@ const app = express();
 app.use(logger("dev"));
 
 
-
+const PORT=process.env.PORT || 7000;
+const MONGODB_URI= process.env.MONGODB_URI ||"mongodb://localhost/workout"
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/workout", {
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useFindAndModify: false
 });
